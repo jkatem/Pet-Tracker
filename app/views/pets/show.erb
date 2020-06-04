@@ -1,0 +1,24 @@
+<h1><%= @pet.pet_name%>'s Info Page: </h1>
+
+<p> Name: <%=@pet.pet_name%></p>
+<p> Birthday: <%=@pet.pet_birthday%></p>
+<p> Weight: <%=@pet.pet_weight%></p>
+<p> Category: <%=@pet.category%></p>
+<p> Description: <%=@pet.pet_description%></p>
+<br>
+
+<%if @pet.user == current_user%>
+
+        <a href="/pets/<%=@pet.id%>/edit">Edit This Pet</a> 
+        </br>
+        </br>
+        <form action="/pets/<%=@pet.id%>" method="POST">
+          <input type="hidden" name="_method" value="DELETE" />
+          <input type="submit" class=delete_button name="" value="Delete Pet" />
+        </form>
+<br>
+
+<%end%>
+
+  
+

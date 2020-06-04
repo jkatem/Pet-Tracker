@@ -1,0 +1,33 @@
+<div>
+
+<h1><%= current_user.name%>'s List of Pets</h1><br>
+
+
+
+<ul> 
+
+    <% if @pets.empty? %>
+        <h1>Click below to add your first pet:</h1>
+        <br>
+        <a href='/pets/new' class="myButton">Click to get started</a><br>
+    <% else %>
+        <%# <h1>Here are your pets:</h1><br> %>
+        <% @pets.each.with_index do |p, idx| %>
+        <li> Name: <%= p.pet_name %></li>
+        <li> Birthday: <%= p.pet_birthday %></li>
+        <li> Weight: <%= p.pet_weight %></li>
+        <li> Category: <%= p.category %></li>
+        <li> Description: <%= p.pet_description %></li>
+        <br>  
+
+        <a href="/pets/<%=p.id%>/edit">Edit</a>
+        <form action="/pets/<%=p.id%>" method="POST">
+        <br>
+          <input type="hidden" name="_method" id="hidden" value="DELETE">
+          <input type='submit' class="delete_button" value= 'Delete Pet'>
+        </form> 
+        <br>
+       <% end %>
+    <% end %>
+</ul>
+</div>
