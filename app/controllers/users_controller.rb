@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-
-
   get '/signup' do
     erb :'users/signup'
   end
@@ -23,10 +21,8 @@ class UsersController < ApplicationController
 
   get '/users/:id' do
     redirect '/' if !(is_logged_in?)
-
     @user = current_user
     @pets = @user.pets
     erb :'/users/show'
-
   end
 end

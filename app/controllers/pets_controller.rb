@@ -1,7 +1,6 @@
 class PetsController < ApplicationController
 
-    get '/pets' do # pet list 
-      
+    get '/pets' do 
       if is_logged_in?
         @pets = current_user.pets.all 
         erb :'/pets/index'
