@@ -3,12 +3,6 @@
 
   <input type='hidden' name="_method" value='patch'>
 
-  <% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
-
   <label>Name</label>
   <input type='text' name='pet_name' placeholder="Name" value="<%= @pet.pet_name %>" ><br/><br>
     
