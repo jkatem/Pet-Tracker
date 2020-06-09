@@ -7,15 +7,15 @@
 <p> Description: <%=@pet.pet_description%></p>
 <br>
 
-<%if @pet.user == current_user%>
-
-        <a href="/pets/<%=@pet.id%>/edit">Edit This Pet</a> 
-        </br>
-        </br>
-        <form action="/pets/<%=@pet.id%>" method="POST">
-          <input type="hidden" name="_method" value="DELETE" />
-          <input type="submit" class=delete_button name="" value="Delete Pet" />
-        </form>
+<%if @pet.user == current_user %>
+  <form action="/pets/<%=@pet.id%>/edit" method="GET">
+    <input type="submit" value="Edit Pet">
+  </form>
+  <br>
+  <form action="/pets/<%=@pet.id%>" method="POST">    
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Pet">
+  </form>
 <br>
 
 <%end%>

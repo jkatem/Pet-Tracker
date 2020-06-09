@@ -16,13 +16,16 @@
             <li> Description: <%= p.pet_description %></li> 
             <li> Category: <%= p.category %></li> 
         <br>
-            <a href="/pets/<%=p.id%>/edit">Edit</a><br/>
+            <form action="/pets/<%=p.id%>/edit" method="GET">
+            <input type= "submit" value="Edit Pet">
+            </form>
+       
             <br>
             <form action="/pets/<%=p.id%>" method="POST">
-            <input type="hidden" name="_method" id="hidden" value="DELETE"> 
-            <input type='submit' class="delete_button" value= 'Delete Pet'> 
+                <input id="hidden" type="hidden" name="_method" value="delete">
+                <input type="submit" value="Delete Pet">
+            </form>
             <br>
-            </form> 
        <% end %>
     <% end %>
 </ul>
