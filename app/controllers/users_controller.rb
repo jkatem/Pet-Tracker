@@ -1,18 +1,22 @@
 class UsersController < ApplicationController
+  
   get '/signup' do
     erb :'users/signup'
   end
 
-  get '/users/new' do 
-    erb :'users/new'
-  end
-
   post '/users' do
     if params[:email] != "" && params[:password] != "" && params[:name] != ""
-      @user = User.create(params)
-      session[:user_id] = @user.id
-      flash[:message] = "Welcome, #{@user.name}. You have successfully created an account."
-      redirect "/users/#{@user.id}"
+      @user = User.new(email: params[:email], 
+                       password: params[:password],
+                       name: params[:name])
+      if @user.save
+        session[:user_id] = @user.id
+        flash[:message] = "Welcome, #{@user.name}. You have successfully created an account."
+        redirect "/users/#{@user.id}"
+      else
+        flash[:error] = "User exists. "
+        redirect '/'
+      end  
     else
       flash[:error] = "You must input your name, an email and a password to continue."
       redirect '/signup'

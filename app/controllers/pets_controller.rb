@@ -18,20 +18,19 @@ class PetsController < ApplicationController
       end
     end
 
-    post '/pets' do #create a new pet obj based on form (user) input
+    post '/pets' do 
       if !is_logged_in?
         redirect '/'
       end
       
-      if (params[:pet_name] != "" && params[:pet_birthday] != "" && params[:pet_weight] != "" && params[:pet_description] != "")
+      if (params[:pet_name] != "" && params[:pet_birthday] != "" && params[:pet_weight] != "" && params[:category] != "" && params[:pet_description] != "")
         @pet = current_user.pets.create(params)
-          redirect "/pets/#{@pet.id}"
+        redirect "/pets/#{@pet.id}"
       else
        redirect "users/#{current_user.id}"
       end
     end
       
-    
     get '/pets/:id' do
       @pet = current_user.pets.find_by(id: params[:id])
       erb :'pets/show'
@@ -42,14 +41,13 @@ class PetsController < ApplicationController
       erb :'pets/edit'
     end
 
-    patch '/pets/:id' do 
- 
+    patch '/pets/:id' do  
       if !is_logged_in?
         redirect '/'
       end
       
       @pet = current_user.pets.find_by(id: params[:id])
-      if (params[:pet_name] != "" && params[:pet_birthday] != "" && params[:pet_weight] != "" && params[:pet_description] != "")
+      if (params[:pet_name] != "" && params[:pet_birthday] != "" && params[:pet_weight] != "" && params[:category] != "" && params[:pet_description] != "")
   
           @pet.update(
             pet_name: params[:pet_name],
@@ -74,10 +72,7 @@ class PetsController < ApplicationController
       else
         redirect '/pets'
       end
-    end
-
-    private
-    
+    end   
 end
 
 

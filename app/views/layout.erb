@@ -31,10 +31,9 @@
     <div class="wrapper">
       <div class="topnav">
           <% if is_logged_in? %>
-        <a class="active" href="/">Home</a>
+        <a class="active" <a href="/users/show">My Profile</a></a>
 
-            <a href="/pets/new">New Pet</a>
-            <a href="/users/<%=current_user.id%>">Profile</a>
+            <a href="/pets/new">New Pet</a>          
             <a href="/logout">Logout</a><br>
         <% else %>
 
