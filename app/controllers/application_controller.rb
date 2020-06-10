@@ -30,14 +30,6 @@ class ApplicationController < Sinatra::Base
     def current_user
       @current_user ||= User.find_by(id: session[:user_id]) if is_logged_in?       
     end
-
-    def redirect_if_not_logged_in
-      if !is_logged_in?
-        flash[:message] = "You must be logged in to continue."
-        redirect '/'
-      end
-    end
-
   end
 
 end
